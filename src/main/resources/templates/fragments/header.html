@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:fragment="commonHead">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header th:fragment="commonHeader">
+        <h1>Alpha Solution planning tool </h1>
+        <img src="AlphaSolutionLogo.jpg" id="logo" alt="AlphaLogo"/>
+        <nav class="top-nav">
+            <a class="forsideNav" href="/">Forside</a>
+            <a class="createProjectNav" href="/createProject">Create new project</a>
+            <a class="seeProjectsNav" href="/seeProjects">See projects</a>
+        </nav>
+    </header>
+</body>
+</html>
