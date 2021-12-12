@@ -3,15 +3,15 @@ package com.example.demo.model;
 public class Project {
     private int projectId;
     private String assignments;
-    private String title;
+    private String name;
 
     //To Do gør så man kan sætte en deadline. Skal måske ændres til int
     private boolean deadline;
 
-    public Project (int projectId, String assignments, String title){
+    public Project (int projectId, String assignments, String name){
         this.projectId = projectId;
         this.assignments = assignments;
-        this.title = title;
+        this.name = name;
     }
     public int getProjectId(){
         return projectId;
@@ -19,14 +19,14 @@ public class Project {
     public String getAssignments(){
         return assignments;
     }
-    public String getTitle(){
-        return title;
+    public String getName(){
+        return name;
     }
     public void setProjectId(int projectId){
         this.projectId = projectId;
     }
-    public void setTitle(String title){
-        this.title = title;
+    public void setName(String name){
+        this.name = name;
     }
     public void setAssignments(String assignments){
         this.assignments = assignments;
@@ -37,7 +37,7 @@ public class Project {
         return "Project{" +
                 "projectId=" + projectId +
                 ", assignments='" + assignments + '\'' +
-                ", title='" + title + '\'' +
+                ", title='" + name + '\'' +
                 ", deadline=" + deadline +
                 '}';
     }

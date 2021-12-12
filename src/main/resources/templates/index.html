@@ -4,6 +4,20 @@
 </head>
 <body id="forside">
 <header th:replace="fragments/header ::commonHeader"></header>
+<div class="main-wrapper">
+
+    <div class="content">
+    <h1> Tryk på billedet til venstre for at oprette projekter eller tryk på billedet til højre for at se allerede oprettet projekter</h1>
+        <a href="/createProject">
+            <img class="forsideBillede" id="new-project-forside-pic" src="new-project-forside-pic.jpg" alt="new project startside billede"/>
+        </a>
+        <a href="/seeProjects">
+            <img class="forsideBillede" id="see-projects-forside-pic" src="see-projects-forside-pic.jpg" alt="see projects startside billede"/>
+        </a>
+    </div>
+
 <footer th:replace="fragments/footer :: commonFooter"></footer>
+</div>
+
 </body>
 </html>

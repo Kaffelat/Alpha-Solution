@@ -6,12 +6,16 @@
 </head>
 <body>
     <header th:fragment="commonHeader">
-        <h1>Alpha Solution planning tool </h1>
-        <img src="AlphaSolutionLogo.jpg" id="logo" alt="AlphaLogo"/>
+        <a class="header-overskrift" href="/">
+        <h2>Alpha Solution planning tool </h2>
+        </a>
+       <a class="logo-Header" href="/">
+           <img src="AlphaSolutionLogo.jpg" id="logo" alt="AlphaLogo"/>
+       </a>
         <nav class="top-nav">
             <a class="forsideNav" href="/">Forside</a>
-            <a class="createProjectNav" href="/createProject">Create new project</a>
             <a class="seeProjectsNav" href="/seeProjects">See projects</a>
+            <a class="createProjectNav" href="/createProject">Create new project</a>
         </nav>
     </header>
 </body>
