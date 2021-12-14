@@ -4,6 +4,33 @@
 </head>
 <body id="seeProjects">
 <header th:replace="fragments/header ::commonHeader"></header>
-<footer th:replace="fragments/footer :: commonFooter"></footer>
+<div class="main-wrapper">
+    <div class="content">
+        <table class="projectListe">
+            <tr>
+                <th>Project ID</th>
+                <th>Project Navn</th>
+                <th>Project Assignments</th>
+                <th>Project status</th>
+                <th>Project startDate</th>
+                <th>Project endDate</th>
+                <th>Project deadline</th>
+            </tr>
+
+            <tr th:each="Project : ${Projects}">
+                <td th:text="${Project.getProjectId()}"></td>
+                <!--
+                <td th:text="${Project.getProjectName}"></td>
+                <td th:text="${Project.getProjectAssignments}"></td>
+                <td th:text="${Project.getStatus}"></td>
+                <td th:text="${Project.getStartDate}"></td>
+                <td th:text="${Project.getEndDate}"></td>
+                <td th:text="${Project.getDeadline}"></td>-->
+            </tr>
+        </table>
+
+    </div>
+    <footer th:replace="fragments/footer :: commonFooter"></footer>
+</div>
 </body>
 </html>

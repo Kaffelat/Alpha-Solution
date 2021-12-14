@@ -2,43 +2,77 @@ package com.example.demo.model;
 
 public class Project {
     private int projectId;
-    private String assignments;
-    private String name;
+    private String projectName;
+    private String projectAssignments;
+    private String status;
+    private String startDate;
+    private String endDate;
+    private String deadline;
 
-    //To Do gør så man kan sætte en deadline. Skal måske ændres til int
-    private boolean deadline;
-
-    public Project (int projectId, String assignments, String name){
+    public Project (int projectId, String projectAssignments, String projectName, String deadline , String endDate , String startDate , String status){
         this.projectId = projectId;
-        this.assignments = assignments;
-        this.name = name;
+        this.projectAssignments = projectAssignments;
+        this.projectName = projectName;
+        this.status = status;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.deadline = deadline;
     }
     public int getProjectId(){
         return projectId;
     }
-    public String getAssignments(){
-        return assignments;
+    public String getProjectName(){
+        return projectName;
     }
-    public String getName(){
-        return name;
+    public String getProjectAssignments(){
+        return projectAssignments;
     }
+    public String getStatus() {
+        return status;
+    }
+    public String getStartDate() {
+        return startDate;
+    }
+    public String getEndDate() {
+        return endDate;
+    }
+    public String getDeadline() {
+        return deadline;
+    }
+
     public void setProjectId(int projectId){
         this.projectId = projectId;
     }
-    public void setName(String name){
-        this.name = name;
+    public void setProjectName(String projectName){
+        this.projectName = projectName;
     }
-    public void setAssignments(String assignments){
-        this.assignments = assignments;
+    public void setProjectAssignments(String projectAssignments){
+        this.projectAssignments = projectAssignments;
     }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
+    }
+
 
     @Override
     public String toString() {
         return "Project{" +
                 "projectId=" + projectId +
-                ", assignments='" + assignments + '\'' +
-                ", title='" + name + '\'' +
-                ", deadline=" + deadline +
+                ", projectAssignments='" + projectAssignments + '\'' +
+                ", projectName='" + projectName + '\'' +
+                ", status='" + status + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", deadline='" + deadline + '\'' +
                 '}';
     }
 }
