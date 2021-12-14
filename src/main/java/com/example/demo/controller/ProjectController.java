@@ -33,7 +33,7 @@ public class ProjectController {
         attributes.addAttribute("projectId", projectId);
         attributes.addAttribute("projectAssignments", projectAssignments);
         attributes.addAttribute("status", status);
-        attributes.addAttribute("startdate", startDate);
+        attributes.addAttribute("startDate", startDate);
         attributes.addAttribute("endDate", endDate);
         attributes.addAttribute("deadline", deadline);
         return "redirect:/createProjectSuccess";
