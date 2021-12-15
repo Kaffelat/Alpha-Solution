@@ -5,17 +5,14 @@ import com.example.demo.repository.ProjectRepo;
 import com.example.demo.services.ProjectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
 @Controller
 public class ProjectController {
-    private ProjectRepo projectRepo;
+    private ProjectRepo projectRepo = new ProjectRepo();
     private ProjectService projectService = new ProjectService();
 
     @GetMapping("/createProject")
@@ -27,8 +24,7 @@ public class ProjectController {
     public String createNewProject(@RequestParam("projectName") String projectName, @RequestParam("projectId") int projectId, @RequestParam("projectAssignments") String projectAssignments, @RequestParam("status") String status, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate, @RequestParam("deadline") String deadline, RedirectAttributes attributes){
 
         System.out.println(projectName);
-        Project projectFromUser = new Project(projectId,projectName,projectAssignments,status,startDate,endDate,deadline);
-
+        Project projectFromUser = projectService.createNewProject(projectId,projectName,projectAssignments,status,startDate,endDate,deadline);
         attributes.addAttribute("projectName", projectName);
         attributes.addAttribute("projectId", projectId);
         attributes.addAttribute("projectAssignments", projectAssignments);
@@ -36,6 +32,8 @@ public class ProjectController {
         attributes.addAttribute("startDate", startDate);
         attributes.addAttribute("endDate", endDate);
         attributes.addAttribute("deadline", deadline);
+
+        projectRepo.insertProjectIntoDB(projectFromUser);
         return "redirect:/createProjectSuccess";
     }
 
@@ -51,4 +49,25 @@ public class ProjectController {
         model.addAttribute("Projects", projects);
         return "seeProjects";
     }
-}
+
+    /*@GetMapping("/deleteProject")
+        public String deleteProjectFromDB(int Id){
+        projectService.deleteProjectFromDB(Id);
+        return "seeProjects";
+        }*/
+
+        @GetMapping("/editProject")
+        public String editProject(){
+
+        return "editProject";
+    }
+
+        @RequestMapping("/editProject")
+        public String changesMadeToProject(){
+
+            return "/";
+            }
+        }
+
+
+

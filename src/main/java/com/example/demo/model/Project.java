@@ -18,6 +18,9 @@ public class Project {
         this.endDate = endDate;
         this.deadline = deadline;
     }
+    public Project(){
+
+    }
     public int getProjectId(){
         return projectId;
     }

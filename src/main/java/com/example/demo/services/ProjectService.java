@@ -6,16 +6,21 @@ import com.example.demo.repository.ProjectRepo;
 import java.util.List;
 
 public class ProjectService {
-    ProjectRepo pr = new ProjectRepo();
+    ProjectRepo pr;
 
     public ProjectService(){
         pr = new ProjectRepo();
     }
+
     public Project createNewProject(int projectId, String projectName, String projectAssignments, String status, String startDate, String endDate, String deadline){
-        Project project = new Project(projectId, projectName, projectAssignments,status, endDate,startDate,status);
-        return project;
+        Project projectFromUser = new Project(projectId, projectName, projectAssignments,status, endDate,startDate,status);
+        return projectFromUser;
     }
     public List<Project> getAllProjects(){
         return pr.getAllProjects();
+    }
+
+    public void deleteProjectFromDB(int id){
+        deleteProjectFromDB(id);
     }
 }
