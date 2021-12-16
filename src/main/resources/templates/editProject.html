@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: commonHead">
 </head>
-<body>
+<body id="createProject">
+<div class="main-wrapper">
+    <header th:replace="fragments/header ::commonHeader"></header>
+    <div class="content">
+        <form action="/editProject" method="POST">
+
+            <label>Skriv ID'et på dit projekt</label><br>
+            <input type="number" name="projectId" th:placeholder="${Project.getProjectId()}"/></br>
+
+            <label>Skriv navnet for det projekt du gerne vil lave</label><br>
+            <input type="text" name="projectName" th:placeholder="${Project.getProjectId()}"/></br>
+
+            <label>Skriv hvilke opgaver der er i dit projekt</label><br>
+            <input type="text" name="projectAssignments" th:placeholder="${Project.getProjectAssignments()}"/></br>
+
+            <label>Er projektet aktivt?</label><br>
+            <input type="text" name="status" th:placeholder="${Project.getStatus()}"/></br>
+
+            <label>Hvilken dag starter arbejdet på projektet</label><br>
+            <input type="text" name="startDate" th:placeholder="${Project.getStartDate()}"/></br>
+
+            <label>Hvornår afsluttes arbejdet på projektet</label><br>
+            <input type="text" name="endDate" th:placeholder="${Project.getEndDate()}"/></br>
+
+            <label>Er der en deadline? Hvis ja hvad er datoen?</label><br>
+            <input type="text" name="deadline" th:placeholder="${Project.getDeadline()}"/></br>
+
+            <button type="submit">Update</button>
+        </form>
+
+    </div>
+    <footer th:replace="fragments/footer :: commonFooter"></footer>
 
 </body>
 </html>

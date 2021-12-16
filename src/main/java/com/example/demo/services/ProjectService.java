@@ -16,11 +16,19 @@ public class ProjectService {
         Project projectFromUser = new Project(projectId, projectName, projectAssignments,status, endDate,startDate,status);
         return projectFromUser;
     }
+
     public List<Project> getAllProjects(){
         return pr.getAllProjects();
     }
 
     public void deleteProjectFromDB(int id){
         deleteProjectFromDB(id);
+    }
+
+    public Project getProjectFromDB(int projectId){
+        return pr.getProjectFromDB(projectId);
+    }
+    public void updateProject(Project p){
+        pr.updateProject(p);
     }
 }
