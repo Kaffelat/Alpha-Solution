@@ -19,12 +19,12 @@
 
             <tr th:each="Project : ${Projects}">
                 <td th:text="${Project.getProjectId()}"></td>
-                <td th:text="${Project.getProjectName}"></td>
-                <td th:text="${Project.getProjectAssignments}"></td>
-                <td th:text="${Project.getStatus}"></td>
-                <td th:text="${Project.getStartDate}"></td>
-                <td th:text="${Project.getEndDate}"></td>
-                <td th:text="${Project.getDeadline}"></td>
+                <td th:text="${Project.getProjectName()}"></td>
+                <td th:text="${Project.getProjectAssignments()}"></td>
+                <td th:text="${Project.getStatus()}"></td>
+                <td th:text="${Project.getStartDate()}"></td>
+                <td th:text="${Project.getEndDate()}"></td>
+                <td th:text="${Project.getDeadline()}"></td>
             </tr>
         </table>
 

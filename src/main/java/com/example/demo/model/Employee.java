@@ -12,6 +12,8 @@ public class Employee {
         this.employeeName = employeeName;
         this.employeeJob = employeeJob;
     }
+    public Employee(){}
+
     public int getEmployeeId(){
         return employeeId;
     }
@@ -45,4 +47,5 @@ public class Employee {
                 ", employeeJob='" + employeeJob + '\'' +
                 '}';
     }
+
 }

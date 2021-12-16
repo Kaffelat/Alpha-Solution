@@ -24,7 +24,7 @@ public class ProjectRepo {
             state.setString(7, p.getDeadline());
             state.executeUpdate();
         } catch (Exception e) {
-            System.out.println("not working");
+            System.out.println("Couldn't insert project into db");
             System.out.println(e.getMessage());
         }
     }
@@ -55,25 +55,26 @@ public class ProjectRepo {
         return projects;
     }
 
-    public void deleteProjectFromDB(int id){
+    public void deleteProjectFromDB(String id){
         try {
             state = DBManager.getConnection().prepareStatement("DELETE FROM heroku_3b09630b0e3ee46.project WHERE projectId = ?;");
-            state.setInt(1, id);
+            state.setString(1, id);
             state.executeUpdate();
         } catch (Exception e){
             System.out.println("The program wasn't able to delete the project with id" + id +  " from the database. Please check the id of the project you are trying to delete");
             System.out.println(e.getMessage());
         }
         }
-    public Project getProjectFromDB(int id){
+
+    public Project getProjectFromDB(int Id){
         Project p = new Project();
         try {
-            PreparedStatement state = DBManager.getConnection().prepareStatement("SELECT * FROM heroku_3b09630b0e3ee46.project WHERE project_id=?;");
-            state.setInt(1,id);
+            PreparedStatement state = DBManager.getConnection().prepareStatement("SELECT * FROM heroku_3b09630b0e3ee46.project WHERE projectid=?;");
+            state.setInt(1,Id);
             ResultSet rs = state.executeQuery();
 
             while (rs.next()){
-                int Id = rs.getInt("Id");
+                Id = rs.getInt("Id");
                 String projectName = rs.getString("projectName");
                 String projectAssignments = rs.getString("projectAssignments");
                 String status = rs.getString("status");
@@ -84,7 +85,7 @@ public class ProjectRepo {
                 System.out.printf("%s, %s, %s, %s, %s, %s, %s\n", projectName, projectAssignments, status, startDate, endDate, deadline);
 
                 p = new Project(Id, projectName, projectAssignments, status, startDate, endDate, deadline);
-                p.setProjectId(id);
+                p.setProjectId(Id);
                 p.setProjectName(projectName);
                 p.setProjectAssignments(projectAssignments);
                 p.setStatus(status);
@@ -94,9 +95,45 @@ public class ProjectRepo {
             }
             state.close();
         } catch (SQLException e){
-            System.out.println("Wasn't able to get the project with id " + id + " From the database");
+            System.out.println("Wasn't able to get the project with id " + Id + " From the database");
             System.out.println(e.getMessage());
         }
         return p;
 }
+
+    public void updateProject(Project p){
+        try{
+            PreparedStatement state = DBManager.getConnection().prepareStatement("UPDATE heroku_3b09630b0e3ee46.project SET projectName = ?,projectAssignments = ?, status = ?, startDate = ?, endDate = ?, deadline = ? WHERE (projectId = ?);");
+            state.setString(1, p.getProjectName());
+            state.setString(2, p.getProjectAssignments());
+            state.setString(3, p.getStatus());
+            state.setString(4, p.getStartDate());
+            state.setString(5, p.getEndDate());
+            state.setString(6, p.getDeadline());
+            state.setInt(7, p.getProjectId());
+            state.executeUpdate();
+
+        }catch (Exception e){
+            System.out.println("Wasn't able to update project");
+            System.out.printf(e.getMessage());
+        }
+    }
+
+    public int getProjectIdFromProjectName(String projectName) {
+        try {
+            PreparedStatement state = DBManager.getConnection().prepareStatement("SELECT projectId FROM " +
+                    "heroku_3b09630b0e3ee46.projects WHERE projectName=?;");
+            state.setString(1, projectName);
+            ResultSet rs = state.executeQuery();
+            rs.next();
+            int Id = rs.getInt("projectId");
+            return Id;
+
+        } catch(SQLException e){
+            System.out.println("Couldn't get id for project with title " + projectName + " from database");
+            System.out.println(e.getMessage());
+
+            return 0;
+        }
+    }
 }
