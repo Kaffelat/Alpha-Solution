@@ -17,8 +17,8 @@ public class TestProjectRepo {
         Project notExpected1 = new Project(5,"test","test","test","test","test","test");
 
         //Assert
-        assertNotEquals(notExpected1,getTestProject);
         assertEquals(expected,getTestProject);
+        assertNotEquals(notExpected1,getTestProject);
 
         //Virker selvom den siger de ikke er ens. Fejlen sker grundet de ikke ligger samme sted i hukommelsen og derfor ikke er helt ens
     }
