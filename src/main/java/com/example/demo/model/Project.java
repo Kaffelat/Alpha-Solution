@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+//Simon Bøg Jørgensen
+
 public class Project {
     private int projectId;
     private String projectName;

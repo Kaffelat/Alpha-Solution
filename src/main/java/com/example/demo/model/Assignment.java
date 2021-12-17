@@ -1,4 +1,5 @@
 package com.example.demo.model;
+//Nicolas Benjamin Kristensen
 
 public class Assignment {
     private int assignmentId;

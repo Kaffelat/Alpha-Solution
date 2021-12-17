@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 public class TestProjectRepo {
-
+// Simon Bøg Jørgensen
     @Test
     void getProjectTest(){
         //Arrange
@@ -15,11 +15,10 @@ public class TestProjectRepo {
         Project getTestProject = pr.getProject(1);
         Project expected = new Project(1,"test","test","test","test","test","test");
         Project notExpected1 = new Project(5,"test","test","test","test","test","test");
-        int notExpected2 = 10;
 
         //Assert
-        assertNotEquals(notExpected1,getTestProject);
         assertEquals(expected,getTestProject);
+        assertNotEquals(notExpected1,getTestProject);
 
         //Virker selvom den siger de ikke er ens. Fejlen sker grundet de ikke ligger samme sted i hukommelsen og derfor ikke er helt ens
     }

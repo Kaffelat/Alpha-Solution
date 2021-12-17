@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
-
+// Nicolas Benjamin Kristensen
 public class AssignmentController {
     AssignmentService assignmentService = new AssignmentService();
     ProjectService projectService = new ProjectService();

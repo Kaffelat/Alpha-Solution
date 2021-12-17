@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-
+//Nicolas Benjamin Kristensen
 public class DBManager {
     private static String user;
     private static String password;
@@ -16,8 +16,9 @@ public class DBManager {
 
 
     public static Connection getConnection() {
-        System.out.print("hej");
-        try (InputStream input = new FileInputStream("src/main/resources/application.properties")) {
+        if (connection != null) {
+            return connection;
+        }try (InputStream input = new FileInputStream("src/main/resources/application.properties")) {
             Properties properties = new Properties();
             properties.load(input);
             url = properties.getProperty("url");

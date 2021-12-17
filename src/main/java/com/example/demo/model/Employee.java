@@ -1,5 +1,5 @@
 package com.example.demo.model;
-
+//Nicolas Benjamin Kristensen
 public class Employee {
     private int employeeId;
     private String email;
