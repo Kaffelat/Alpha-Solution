@@ -3,13 +3,13 @@ package com.example.demo.controller;
 import com.example.demo.model.Project;
 import com.example.demo.repository.ProjectRepo;
 import com.example.demo.services.ProjectService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,16 +19,6 @@ public class ProjectController {
     ProjectService projectService = new ProjectService();
     Project selectedProject = new Project();
 
-
-    @GetMapping("/project/{projectId}")
-    public String project(@PathVariable int projectId, Model model) {
-        List<Project> projectList = new ArrayList<>();
-
-        projectList.add(projectService.getProjectFromDB(projectId));
-
-        model.addAttribute("projectList", projectList);
-        return "showProject";
-    }
 
     @GetMapping("/createProject")
     public String createProject() {
@@ -48,7 +38,7 @@ public class ProjectController {
         attributes.addAttribute("deadline", deadline);
 
         projectRepo.insertProjectIntoDB(projectFromUser);
-        return "seeProjects";
+        return "/seeAllProjects";
     }
 
 
@@ -56,41 +46,57 @@ public class ProjectController {
     public String seeProjects(Model model) {
 
         List<Project> projects = projectService.getAllProjects();
-
         model.addAttribute("Projects", projects);
 
-        return "seeProjects";
+        return "seeAllProjects";
     }
+    @GetMapping("/project/{projectId}")
+    public String project(@PathVariable int projectId, Model model) {
 
+        List<Project> projectList = new ArrayList<>();
+
+        projectList.add(projectService.getProjectFromDB(projectId));
+
+        model.addAttribute("projectList", projectList);
+        return "seeProject";
+    }
 
     @GetMapping("/editProject{projectId}")
-    public String editProject(@PathVariable("projectId") int selectedProject, Model model) {
-        Project projectThatWillBeEdited = projectService.getProjectFromDB(selectedProject);
-        model.addAttribute("Project", projectService.getProjectFromDB(selectedProject));
+    public String editProject(@PathVariable int projectId, Model model) {
+
+        selectedProject = projectService.getProjectFromDB(projectId);
+
+        model.addAttribute("Project", projectService.getProjectFromDB(projectId));
+
         return "editProject";
     }
-
+    //virker ikke
     @RequestMapping("/editProject")
-    public String changesMadeToProject(WebRequest webr) {
+    public String changesMadeToProject(@RequestParam("projectName") String projectName, @RequestParam("projectId") int projectId, @RequestParam("projectAssignments") String projectAssignments, @RequestParam("status") String status, @RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate, @RequestParam("deadline") String deadline,RedirectAttributes attributes) {
 
-        String projectName = webr.getParameter("projectName");
-        String projectAssignments = webr.getParameter("projectAssignments");
-        String status = webr.getParameter("status");
-        String startDate = webr.getParameter("startDate");
-        String endDate = webr.getParameter("endDate");
-        String deadline = webr.getParameter("deadline");
-
-        selectedProject.setProjectName(projectName);
-        selectedProject.setProjectAssignments(projectAssignments);
-        selectedProject.setStatus(status);
-        selectedProject.setStartDate(startDate);
-        selectedProject.setEndDate(endDate);
-        selectedProject.setDeadline(deadline);
+        Project selectedProject = projectService.createNewProject(projectId, projectName, projectAssignments, status, startDate, endDate, deadline);
+        attributes.addAttribute("projectName", projectName);
+        attributes.addAttribute("projectAssignments", projectAssignments);
+        attributes.addAttribute("status", status);
+        attributes.addAttribute("startDate", startDate);
+        attributes.addAttribute("endDate", endDate);
+        attributes.addAttribute("deadline", deadline);
+        attributes.addAttribute("projectId", projectId);
 
         projectService.updateProject(selectedProject);
-        return "/seeProjects";
+
+        return "seeAllProjects";
+    }
+
+    @GetMapping("/deleteProject/{projectId}")
+    public String deleteProject (@PathVariable String projectId){
+        int Id = Integer.parseInt(projectId);
+        projectService.deleteProjectFromDB(Id);
+        return "seeAllProjects";
     }
 }
+
+
 
 
 

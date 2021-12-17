@@ -6,12 +6,9 @@
 <div class="main-wrapper">
     <header th:replace="fragments/header ::commonHeader"></header>
     <div class="content">
-        <form action="/editProject" method="POST">
+        <form action="/changesMadeToProject" method="POST">
 
-            <label>Skriv ID'et på dit projekt</label><br>
-            <input type="number" name="projectId" th:placeholder="${Project.getProjectId()}"/></br>
-
-            <label>Skriv navnet for det projekt du gerne vil lave</label><br>
+            <label>Skriv navnet for det projekt du gerne vil ændre</label><br>
             <input type="text" name="projectName" th:placeholder="${Project.getProjectId()}"/></br>
 
             <label>Skriv hvilke opgaver der er i dit projekt</label><br>

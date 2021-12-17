@@ -82,3 +82,15 @@ footer {
     bottom: 0;
     position: fixed;
 }
+table{
+    width: 500px;
+    border-collapse: collapse;
+    margin: 50px auto;
+}
+
+tr{
+    border: 2px solid black;
+    border-collapse: collapse;
+    color: black;
+    padding: 10px;
+}

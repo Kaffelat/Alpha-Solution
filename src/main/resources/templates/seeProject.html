@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: commonHead">
+</head>
+<body id="seeProject">
+<header th:replace="fragments/header ::commonHeader"></header>
+<div class="main-wrapper">
+    <div class="content">
+        <table class="project">
+         <tr>
+            <th>Project ID</th>
+            <th>Project Name</th>
+            <th>Project Assignments</th>
+            <th>Project status</th>
+            <th>Project StartDate</th>
+            <th>Project EndDate</th>
+            <th>Project Deadline</th>
+
+         </tr>
+
+        <tr th:each="Project : ${projectList}">
+            <td th:text="${Project.getProjectId}"></td>
+            <td th:text="${Project.getProjectName}"></td>
+            <td th:text="${Project.getProjectAssignments()}"></td>
+            <td th:text="${Project.getStatus()}"></td>
+            <td th:text="${Project.getStartDate()}"></td>
+            <td th:text="${Project.getEndDate()}"></td>
+            <td th:text="${Project.getDeadline()}"></td>
+
+            <td>
+                <a th:href="@{/editProject/{Id}(Id=${Project.getProjectId()})}"> Edit </a>
+            </td>
+    </tr>
+        </table>
+    </div>
+    <footer th:replace="fragments/footer :: commonFooter"></footer>
+</div>
+</body>
+</html>
