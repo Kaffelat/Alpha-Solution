@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
-
+//Simon Bøg Jørgensen
 @Controller
 public class ProjectController {
     ProjectRepo projectRepo = new ProjectRepo();

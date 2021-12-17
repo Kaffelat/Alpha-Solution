@@ -4,7 +4,7 @@ import com.example.demo.model.Assignment;
 import com.example.demo.repository.AssignmentRepo;
 
 import java.util.ArrayList;
-
+//Nicolas Benjamin Kristensen
 public class AssignmentService {
     AssignmentRepo ar;
 
@@ -40,7 +40,7 @@ public class AssignmentService {
         ar.insertAssignmentIntoDB(a);
     }
 
-    public ArrayList<Assignment> getAllAssignmentAsAArray(){
+    public ArrayList<Assignment> getAllAssignmentAsArray(){
         return ar.getAssignmentsInAnArray();
     }
 }

@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+//Simon Bøg Jørgensen
 public class AssignmentRepo {
     PreparedStatement state;
 
@@ -82,13 +82,13 @@ public class AssignmentRepo {
             System.out.printf(e.getMessage());
         }
     }
-    public ArrayList<Assignment> getAllAssignmentsInAProject(int aID){
+    public ArrayList<Assignment> getAllAssignmentsInAProject(int aId){
         ArrayList<Assignment> allAssignments = new ArrayList<>();
         Assignment a;
         try {
 
             state = DBManager.getConnection().prepareStatement("SELECT * FROM heroku_3b09630b0e3ee46.assignment where projectid=?");
-            state.setInt(1, aID);
+            state.setInt(1, aId);
 
             ResultSet rs = state.executeQuery();
 

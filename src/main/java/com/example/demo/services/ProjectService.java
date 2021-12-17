@@ -4,7 +4,7 @@ import com.example.demo.model.Project;
 import com.example.demo.repository.ProjectRepo;
 
 import java.util.List;
-
+//Simon Bøg Jørgensen
 public class ProjectService {
     ProjectRepo pr;
 

@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+//Simon Bøg Jørgensen
 public class ProjectRepo {
     List<Project> projects;
     PreparedStatement state;
@@ -98,7 +98,7 @@ public class ProjectRepo {
         return p;
 }
 
-    public void updateProject(Project p){
+    public void updateProject (Project p){
         try{
             state = DBManager.getConnection().prepareStatement("UPDATE heroku_3b09630b0e3ee46.project SET projectName = ?,projectAssignments = ?, status = ?, startDate = ?, endDate = ?, deadline = ? WHERE (projectId = ?);");
             state.setString(1, p.getProjectName());
