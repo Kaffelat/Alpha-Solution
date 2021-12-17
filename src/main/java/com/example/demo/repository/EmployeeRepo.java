@@ -96,7 +96,7 @@ public class EmployeeRepo {
         }
     }
 
-    public void deleteEmployeeFromDB(int Id) {
+    public void deleteEmployeeFromDB(String Id) {
         try {
             state = DBManager.getConnection().prepareStatement
                     ("DELETE FROM heroku_3b09630b0e3ee46.employee WHERE (employeeId = " + Id + ");");

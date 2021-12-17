@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.Assignment;
+import com.example.demo.model.Project;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -83,6 +84,7 @@ public class AssignmentRepo {
     }
     public ArrayList<Assignment> getAllAssignmentsInAProject(int aID){
         ArrayList<Assignment> allAssignments = new ArrayList<>();
+        Assignment a;
         try {
 
             state = DBManager.getConnection().prepareStatement("SELECT * FROM heroku_3b09630b0e3ee46.assignment where projectid=?");
@@ -100,7 +102,15 @@ public class AssignmentRepo {
                 String assignmentDeadline = rs.getString("assignmentDeadline");
                 String assignmentStatus = rs.getString("assignmentStatus");
 
-                Assignment a = new Assignment(assignmentId,assignmentProjectId,estimatedTime,spentTime,assignmentName,assignmentDescription,assignmentDeadline,assignmentStatus);
+                a = new Assignment(assignmentId,assignmentProjectId,estimatedTime,spentTime,assignmentName,assignmentDescription,assignmentDeadline,assignmentStatus);
+                a.setAssignmentId(assignmentId);
+                a.setAssignmentProjecId(assignmentProjectId);
+                a.setEstimatedTime(estimatedTime);
+                a.setSpentTime(spentTime);
+                a.setAssignmentName(assignmentName);
+                a.setAssignmentDescription(assignmentDescription);
+                a.setAssignmentDeadline(assignmentDeadline);
+                a.setAssignmentStatus(assignmentStatus);
 
                 allAssignments.add(a);
             }
@@ -122,6 +132,42 @@ public class AssignmentRepo {
             System.out.println(e.getMessage());
         }
 
+    }
+    public ArrayList<Assignment> getAssignmentsInAnArray(){
+        ArrayList<Assignment> assignmentArray = new ArrayList<>();
+        try{
+            state = DBManager.getConnection().prepareStatement("SELECT * FROM heroku_3b09630b0e3ee46.assignment;");
+            ResultSet rs = state.executeQuery();
+
+            while (rs.next()) {
+                int Id = rs.getInt("projectId");
+                int assignmentId = rs.getInt("assignmentId");
+                int assignmentProjecId = rs.getInt("assignmentProjecId");
+                int estimatedTime = rs.getInt("estimatedTime");
+                int spentTime = rs.getInt("spentTime");
+                String assignmentName = rs.getString("assignmentName");
+                String assignmentDescription = rs.getString("assignmentDescription");
+                String assignmentDeadline = rs.getString("assignmentDeadline");
+                String assignmentStatus = rs.getString("assignmentStatus");
+
+                Assignment a = new Assignment(Id,assignmentProjecId , estimatedTime, spentTime, assignmentName, assignmentDescription,assignmentDeadline, assignmentStatus);
+                a.setAssignmentProjecId(Id);
+                a.setAssignmentProjecId(assignmentProjecId);
+                a.setEstimatedTime(estimatedTime);
+                a.setSpentTime(spentTime);
+                a.setAssignmentName(assignmentName);
+                a.setAssignmentDescription(assignmentDescription);
+                a.setAssignmentDeadline(assignmentDeadline);
+                a.setAssignmentStatus(assignmentStatus);
+
+                assignmentArray.add(a);
+
+            }
+        } catch (SQLException e) {
+            System.out.println("Couldn't get projects from database");
+            System.out.println(e.getMessage());
+        }
+            return assignmentArray;
     }
 
 }

@@ -9,7 +9,7 @@ public class Project {
     private String endDate;
     private String deadline;
 
-    public Project (int projectId, String projectAssignments, String projectName, String deadline , String endDate , String startDate , String status){
+    public Project (int projectId, String projectAssignments, String projectName, String status , String endDate , String startDate , String deadline){
         this.projectId = projectId;
         this.projectAssignments = projectAssignments;
         this.projectName = projectName;

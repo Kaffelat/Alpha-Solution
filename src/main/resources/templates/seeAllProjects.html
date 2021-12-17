@@ -9,22 +9,18 @@
         <table class="projectListe">
             <tr>
                 <th>Project ID</th>
-                <th>Project Navn</th>
+                <th>Project Name</th>
                 <th>Project Assignments</th>
                 <th>Project status</th>
-                <th>Project startDate</th>
-                <th>Project endDate</th>
                 <th>Project deadline</th>
             </tr>
 
-            <tr th:each="Project : ${Projects}">
-                <td th:text="${Project.getProjectId()}"></td>
-                <td th:text="${Project.getProjectName()}"></td>
-                <td th:text="${Project.getProjectAssignments()}"></td>
-                <td th:text="${Project.getStatus()}"></td>
-                <td th:text="${Project.getStartDate()}"></td>
-                <td th:text="${Project.getEndDate()}"></td>
-                <td th:text="${Project.getDeadline()}"></td>
+            <tr th:each="project : ${Projects}">
+                <td> <a th:href="'/project/' + ${project.getProjectId}" th:text="${project.getProjectId}"></a></td>
+                <td th:text="${project.getProjectName()}"></td>
+                <td th:text="${project.getProjectAssignments()}"></td>
+                <td th:text="${project.getStatus()}"></td>
+                <td th:text="${project.getDeadline()}"></td>
             </tr>
         </table>
 

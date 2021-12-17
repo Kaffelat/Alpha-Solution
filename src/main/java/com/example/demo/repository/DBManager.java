@@ -16,9 +16,7 @@ public class DBManager {
 
 
     public static Connection getConnection() {
-        if (connection != null)
-            return connection;
-
+        System.out.print("hej");
         try (InputStream input = new FileInputStream("src/main/resources/application.properties")) {
             Properties properties = new Properties();
             properties.load(input);

@@ -13,7 +13,7 @@ public class ProjectService {
     }
 
     public Project createNewProject(int projectId, String projectName, String projectAssignments, String status, String startDate, String endDate, String deadline){
-        Project projectFromUser = new Project(projectId, projectName, projectAssignments,status, endDate,startDate,status);
+        Project projectFromUser = new Project(projectId, projectName, projectAssignments,status, endDate,startDate,deadline);
         return projectFromUser;
     }
 
@@ -26,7 +26,7 @@ public class ProjectService {
     }
 
     public Project getProjectFromDB(int projectId){
-        return pr.getProjectFromDB(projectId);
+        return pr.getProject(projectId);
     }
     public void updateProject(Project p){
         pr.updateProject(p);
